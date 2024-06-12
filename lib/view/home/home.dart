@@ -115,7 +115,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           height: MediaQuery.of(context).size.height * 0.05,
                           width: MediaQuery.of(context).size.width * 0.12,
                           child:
-                              const Icon(Icons.mic, color: TextColor.baseColor),
+                               Icon(Icons.mic, color: TextColor.baseColor),
                         ),
                       ],
                     ),
