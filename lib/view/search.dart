@@ -1,8 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:machine_task/constant/color.dart';
-import 'college_card.dart'; // Import the CollegeCard widget
+import 'college_card.dart'; 
 
 class SearchScreen extends StatelessWidget {
   const SearchScreen({super.key});

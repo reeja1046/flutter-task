@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:machine_task/constant/color.dart';
+import 'package:machine_task/view/college_detail_tab.dart';
 
 class CollegeDetailScreen extends StatefulWidget {
-  const CollegeDetailScreen({Key? key}) : super(key: key);
+  const CollegeDetailScreen({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _CollegeDetailScreenState createState() => _CollegeDetailScreenState();
 }
 
@@ -116,14 +117,50 @@ class _CollegeDetailScreenState extends State<CollegeDetailScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      _buildTabItem('About College', 0),
-                      _buildTabItem('Hostel Facility', 1),
-                      _buildTabItem('Q & A', 2),
-                      _buildTabItem('Events', 3),
+                      CollegeDetailTab(
+                        title: 'About College',
+                        index: 0,
+                        selectedIndex: _selectedIndex,
+                        onTap: () {
+                          setState(() {
+                            _selectedIndex = 0;
+                          });
+                        },
+                      ),
+                      CollegeDetailTab(
+                        title: 'Hostel Facility',
+                        index: 1,
+                        selectedIndex: _selectedIndex,
+                        onTap: () {
+                          setState(() {
+                            _selectedIndex = 1;
+                          });
+                        },
+                      ),
+                      CollegeDetailTab(
+                        title: 'Q & A',
+                        index: 2,
+                        selectedIndex: _selectedIndex,
+                        onTap: () {
+                          setState(() {
+                            _selectedIndex = 2;
+                          });
+                        },
+                      ),
+                      CollegeDetailTab(
+                        title: 'Events',
+                        index: 3,
+                        selectedIndex: _selectedIndex,
+                        onTap: () {
+                          setState(() {
+                            _selectedIndex = 3;
+                          });
+                        },
+                      ),
                     ],
                   ),
                   const SizedBox(height: 20),
-                  _buildTabContent(),
+                  CollegeDetailTabContent(selectedIndex: _selectedIndex),
                 ],
               ),
             ),
@@ -142,7 +179,7 @@ class _CollegeDetailScreenState extends State<CollegeDetailScreen> {
                 onPressed: () {},
                 child: const Text(
                   'Apply Now',
-                  style: TextStyle(color: Colors.white, fontSize: 16),
+                  style: TextStyle(color: Colors.white, fontSize: 18),
                 ),
               ),
             ),
@@ -150,292 +187,5 @@ class _CollegeDetailScreenState extends State<CollegeDetailScreen> {
         ),
       ),
     );
-  }
-
-  Widget _buildTabItem(String title, int index) {
-    return GestureDetector(
-      onTap: () {
-        setState(() {
-          _selectedIndex = index;
-        });
-      },
-      child: Column(
-        children: [
-          Text(
-            title,
-            style: TextStyle(
-              fontSize: 14,
-              fontWeight: FontWeight.w500,
-              color:
-                  _selectedIndex == index ? TextColor.baseColor : Colors.black,
-            ),
-          ),
-          Container(
-            height: 2,
-            width: 60,
-            color: _selectedIndex == index
-                ? TextColor.baseColor
-                : Colors.transparent,
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildTabContent() {
-    switch (_selectedIndex) {
-      case 0:
-        return _buildDescriptionTab();
-      case 1:
-        return _buildHostelFacilityTab();
-      case 2:
-        return _buildQATab();
-      case 3:
-        return _buildEventsTab();
-      default:
-        return const SizedBox();
-    }
-  }
-
-  Widget _buildDescriptionTab() {
-    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      const Text(
-        'Description',
-        style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
-      ),
-      const Text(
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book",
-        style: TextStyle(fontSize: 14, color: Colors.grey),
-      ),
-      const Text(
-        'Location',
-        style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
-      ),
-      Container(
-        child: const Image(
-          image: AssetImage('assets/Background.png'),
-          fit: BoxFit.contain,
-        ),
-      ),
-      const Text(
-        'Student Review',
-        style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
-      ),
-    ]);
-  }
-
-  Widget _buildHostelFacilityTab() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Row(
-          children: [
-            SizedBox(
-              height: 35,
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  side: const BorderSide(color: TextColor.baseColor),
-                  backgroundColor: TextColor.baseColor,
-                ),
-                onPressed: () {},
-                child: Row(
-                  children: [
-                    Image.asset('assets/bed (3).png'),
-                    const SizedBox(width: 10),
-                    const Text(
-                      '4',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 16,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            const SizedBox(width: 5),
-            SizedBox(
-              height: 35,
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  side: const BorderSide(color: TextColor.baseColor),
-                  backgroundColor: Colors.white,
-                ),
-                onPressed: () {},
-                child: Row(
-                  children: [
-                    Image.asset(
-                      'assets/bed (3).png',
-                      color: TextColor.baseColor,
-                    ),
-                    const SizedBox(width: 10),
-                    const Text(
-                      '3',
-                      style: TextStyle(
-                        color: TextColor.baseColor,
-                        fontSize: 16,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            const SizedBox(width: 5),
-            SizedBox(
-              height: 35,
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  side: const BorderSide(color: TextColor.baseColor),
-                  backgroundColor: Colors.white,
-                ),
-                onPressed: () {},
-                child: Row(
-                  children: [
-                    Image.asset(
-                      'assets/bed (3).png',
-                      color: TextColor.baseColor,
-                    ),
-                    const SizedBox(width: 10),
-                    const Text(
-                      '2',
-                      style: TextStyle(
-                        color: TextColor.baseColor,
-                        fontSize: 16,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            const SizedBox(width: 5),
-            SizedBox(
-              height: 35,
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  side: const BorderSide(color: TextColor.baseColor),
-                  backgroundColor: Colors.white,
-                ),
-                onPressed: () {},
-                child: Row(
-                  children: [
-                    Image.asset(
-                      'assets/bed (3).png',
-                      color: TextColor.baseColor,
-                    ),
-                    const SizedBox(width: 8),
-                    const Text(
-                      '1',
-                      style: TextStyle(
-                        color: TextColor.baseColor,
-                        fontSize: 16,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ],
-        ),
-        SizedBox(height: 20),
-        SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: Row(
-            children: [
-              Container(
-                child: Image.asset('assets/Room1.png'),
-              ),
-              SizedBox(width: 10),
-              Container(
-                child: Image.asset('assets/Room2.png'),
-              ),
-              SizedBox(width: 10),
-              Container(
-                child: Image.asset('assets/Room3.png'),
-              )
-            ],
-          ),
-        ),
-        SizedBox(height: 20),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            const Text(
-              'GHJK Engineering Hostel',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
-            ),
-            Container(
-              height: MediaQuery.of(context).size.height * 0.03,
-              width: MediaQuery.of(context).size.width * 0.16,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(7),
-                color: const Color.fromARGB(255, 30, 207, 36),
-              ),
-              child: const Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    '4.3',
-                    style: TextStyle(
-                        fontSize: 14,
-                        color: TextColor.textColor,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  Icon(
-                    Icons.star,
-                    color: Colors.white,
-                    size: 18,
-                  )
-                ],
-              ),
-            ),
-          ],
-        ),
-        const SizedBox(height: 10),
-        Row(
-          children: [
-            Image.asset('assets/location 1.png'),
-            const SizedBox(width: 10),
-            const Text(
-              'Lorem ipsum dolor sit amet, consectetur',
-              style: TextStyle(fontSize: 14, color: Colors.grey),
-            ),
-          ],
-        ),
-        const SizedBox(height: 10),
-        const Text(
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Neque accumsan, scelerisque eget lectus ullamcorper a placerat. Porta cras at pretium varius purus cursus. Morbi justo commodo habitant morbi quis pharetra posuere mauris. Morbi sit risus, diam amet volutpat quis. Nisl pellentesque nec facilisis ultrices.',
-          style: TextStyle(color: Colors.grey),
-        ),
-        const SizedBox(height: 10),
-        const Text(
-          'Facilities',
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
-        ),
-        const SizedBox(height: 10),
-        Row(
-          children: [
-            Image.asset('assets/university 1.png'),
-            const SizedBox(width: 10),
-            Text('College in 400 mtrs'),
-          ],
-        ),
-        const SizedBox(height: 20),
-        Row(
-          children: [
-            Image.asset('assets/bath (1) 1.png'),
-            const SizedBox(width: 10),
-            Text('Bathrooms : 2'),
-          ],
-        )
-      ],
-    );
-  }
-
-  Widget _buildQATab() {
-    return const Text('Q & A Content');
-  }
-
-  Widget _buildEventsTab() {
-    return const Text('Events Content');
   }
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:machine_task/constant/color.dart';
 import 'package:machine_task/view/home/widget/bottomnavbar.dart';
 import 'package:machine_task/view/home/widget/bottomsheet.dart';
+import 'package:machine_task/view/home/widget/header.dart';
 import 'package:machine_task/view/search.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -23,118 +24,112 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ClipRect(
-        child: Stack(
-          children: [
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.18,
-              width: MediaQuery.of(context).size.width,
-            ),
-            Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(30),
-                color: TextColor.baseColor,
-              ),
-              height: MediaQuery.of(context).size.height * 0.28,
-              width: MediaQuery.of(context).size.width,
-              child: Padding(
-                padding: EdgeInsets.only(
-                  top: MediaQuery.of(context).size.height * 0.08,
-                  left: MediaQuery.of(context).size.width * 0.10,
-                  right: MediaQuery.of(context).size.width * 0.10,
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text(
-                      'Find your own way',
-                      style: TextStyle(
-                        color: TextColor.textColor,
-                        fontSize: 19,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.017,
-                    ),
-                    const Text(
-                      'Search in 600 colleges around !',
-                      style: TextStyle(
-                        color: TextColor.textColor,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.04,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Expanded(
-                          child: GestureDetector(
-                            onTap: () {
-                              Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => const SearchScreen()));
-                            },
-                            child: Container(
-                              decoration: BoxDecoration(
-                                color: TextColor.textColor,
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              height: MediaQuery.of(context).size.height * 0.05,
-                              width: MediaQuery.of(context).size.width,
-                              child: const Padding(
-                                padding: EdgeInsets.only(left: 15),
-                                child: Row(
-                                  children: [
-                                    Icon(
-                                      Icons.search,
-                                      color: Colors.grey,
-                                    ),
-                                    SizedBox(width: 8),
-                                    Text(
-                                      'Search colleges, schools...',
-                                      style: TextStyle(color: Colors.grey),
-                                    )
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                        const SizedBox(width: 10),
-                        Container(
-                          decoration: BoxDecoration(
-                            border: Border.all(
-                              color: Colors.white,
-                              width: 1,
-                            ),
-                            borderRadius: BorderRadius.circular(10),
-                            color: Colors.white,
-                          ),
-                          height: MediaQuery.of(context).size.height * 0.05,
-                          width: MediaQuery.of(context).size.width * 0.12,
-                          child:
-                               Icon(Icons.mic, color: TextColor.baseColor),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
+      body: Column(
+        children: [
+          const CustomHeader(),
+          const SizedBox(height: 20),
+          Stack(children: [
+            Image.asset('assets/Rectangle 141.png'),
+            const Positioned(
+              right: 0,
+              bottom: 0,
+              child: Text(
+                '+6 colleges',
+                style: TextStyle(fontWeight: FontWeight.bold),
               ),
             ),
-            Positioned(
-              top: MediaQuery.of(context).size.height * 0.06,
-              right: MediaQuery.of(context).size.width * 0.08,
-              child: IconButton(
-                icon: const Icon(Icons.notifications, color: Colors.white),
-                onPressed: () {
-                  MyBottomSheet.show(context);
-                },
+            const Positioned(
+              top: 20,
+              left: 20,
+              child: Text(
+                'Top colleges',
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: TextColor.textColor,
+                    fontSize: 20),
               ),
             ),
-          ],
-        ),
+            const Positioned(
+              top: 60,
+              left: 20,
+              child: Text(
+                'Search through thousands of accredited colleges \nand universities online to find the right one \nfor you.Apply in 3 min, and connect \nwith your future.',
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: TextColor.textColor,
+                    fontSize: 14),
+              ),
+            )
+          ]),
+          const SizedBox(height: 20),
+          Stack(children: [
+            Image.asset('assets/Rectangle 142.png'),
+            const Positioned(
+              right: 0,
+              bottom: 0,
+              child: Text(
+                '+25 schools',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+            ),
+            const Positioned(
+              top: 20,
+              left: 20,
+              child: Text(
+                'Top Schools',
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: TextColor.textColor,
+                    fontSize: 20),
+              ),
+            ),
+            const Positioned(
+              top: 60,
+              left: 20,
+              child: Text(
+                'Search through thousands of accredited \ncolleges and universities online to \nfind the right one for you.',
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: TextColor.textColor,
+                    fontSize: 14),
+              ),
+            )
+          ]),
+          const SizedBox(height: 20),
+          Stack(children: [
+            Image.asset('assets/Rectangle 143.png'),
+            const Positioned(
+              right: 0,
+              bottom: 0,
+              child: Text(
+                '+23 exams',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+            ),
+            const Positioned(
+              top: 20,
+              left: 20,
+              child: Text(
+                'Exams',
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: TextColor.textColor,
+                    fontSize: 20),
+              ),
+            ),
+            const Positioned(
+              top: 60,
+              left: 20,
+              child: Text(
+                'Find an end to end information \nabout the exams that are happening in India',
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: TextColor.textColor,
+                    fontSize: 14),
+              ),
+            )
+          ]),
+        ],
       ),
       bottomNavigationBar: MyBottomNavigationBar(
         selectedIndex: _selectedIndex,
